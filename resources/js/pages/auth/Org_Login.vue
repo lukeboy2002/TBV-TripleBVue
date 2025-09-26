@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import AuthenticatedSessionController from '@/actions/App/Http/Controllers/Auth/AuthenticatedSessionController';
 import InputError from '@/components/InputError.vue';
 import TextLink from '@/components/TextLink.vue';
@@ -20,8 +20,8 @@ defineProps<{
 
 <template>
     <AuthBase
-        description="Enter your email and password below to log in"
         title="Log in to your account"
+        description="Enter your email and password below to log in"
     >
         <Head title="Log in" />
 
@@ -33,25 +33,25 @@ defineProps<{
         </div>
 
         <Form
-            v-slot="{ errors, processing }"
-            :reset-on-success="['password']"
-            class="flex flex-col gap-6"
             v-bind="AuthenticatedSessionController.store.form()"
+            :reset-on-success="['password']"
+            v-slot="{ errors, processing }"
+            class="flex flex-col gap-6"
         >
             <div class="grid gap-6">
                 <div class="grid gap-2">
-                    <Label for="username">Username</Label>
+                    <Label for="email">Email address</Label>
                     <Input
-                        id="username"
-                        :tabindex="1"
-                        autocomplete="username"
-                        autofocus
-                        name="username"
-                        placeholder="username"
+                        id="email"
+                        type="email"
+                        name="email"
                         required
-                        type="text"
+                        autofocus
+                        :tabindex="1"
+                        autocomplete="email"
+                        placeholder="email@example.com"
                     />
-                    <InputError :message="errors.username" />
+                    <InputError :message="errors.email" />
                 </div>
 
                 <div class="grid gap-2">
@@ -60,37 +60,37 @@ defineProps<{
                         <TextLink
                             v-if="canResetPassword"
                             :href="request()"
-                            :tabindex="5"
                             class="text-sm"
+                            :tabindex="5"
                         >
                             Forgot password?
                         </TextLink>
                     </div>
                     <Input
                         id="password"
+                        type="password"
+                        name="password"
+                        required
                         :tabindex="2"
                         autocomplete="current-password"
-                        name="password"
                         placeholder="Password"
-                        required
-                        type="password"
                     />
                     <InputError :message="errors.password" />
                 </div>
 
                 <div class="flex items-center justify-between">
-                    <Label class="flex items-center space-x-3" for="remember">
-                        <Checkbox id="remember" :tabindex="3" name="remember" />
+                    <Label for="remember" class="flex items-center space-x-3">
+                        <Checkbox id="remember" name="remember" :tabindex="3" />
                         <span>Remember me</span>
                     </Label>
                 </div>
 
                 <Button
-                    :disabled="processing"
-                    :tabindex="4"
-                    class="mt-4 w-full"
-                    data-test="login-button"
                     type="submit"
+                    class="mt-4 w-full"
+                    :tabindex="4"
+                    :disabled="processing"
+                    data-test="login-button"
                 >
                     <LoaderCircle
                         v-if="processing"
