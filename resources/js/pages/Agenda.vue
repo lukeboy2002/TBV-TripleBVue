@@ -1,14 +1,16 @@
 <script lang="ts" setup>
 import { Head } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
+
+defineProps<{}>();
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head title="Agenda" />
 
     <AppLayout>
         <template #header>
-            <div class="font-secondary text-secondary font-black">TEST</div>
+            <div class="font-secondary text-secondary font-black">Agenda</div>
         </template>
 
         <div>
@@ -53,16 +55,3 @@ import AppLayout from '@/layouts/AppLayout.vue';
         <template #side>SIDE</template>
     </AppLayout>
 </template>
-
-<!--<template>-->
-<!--    <Head title="Welcome" />-->
-
-<!--    <div>-->
-
-<!--    </div>-->
-
-<!--    <template #side>-->
-<!--        asdfsafjhgjgh-->
-<!--    </template>-->
-
-<!--</template>-->
